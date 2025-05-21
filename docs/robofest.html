@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboFest - TechticsClub</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            padding-top: 160px; /* Adjusted for fixed navbars */
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #0d1b3e;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            height: 80px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 30px 20px;
+            display: block;
+            font-size: 17px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        .nav-link.active {
+            color: #0d6efd;
+            border-bottom: 3px solid #0d6efd;
+        }
+
+        .sign-in-link {
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 30px 20px;
+        }
+
+        .sign-in-link:hover {
+            color: #0d6efd;
+        }
+
+        /* Second Navbar */
+        .second-navbar {
+            display: none; /* Hidden by default */
+            background-color: #1a2647;
+            padding: 10px 5%;
+            position: fixed;
+            top: 80px; /* Positioned below the original navbar */
+            left: 0;
+            right: 0;
+            z-index: 999;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .second-navbar .nav-menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+        }
+
+        .second-navbar .nav-item {
+            margin-right: 20px;
+        }
+
+        .second-navbar .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .second-navbar .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        .second-navbar .nav-link.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #0d1b3e, #001F3F);
+            padding: 120px 2rem 60px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/1200x600') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #0d6efd;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About Event Section */
+        .about-event {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: center;
+            padding: 4rem 2rem;
+        }
+
+        .event-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            animation: slideInLeft 1s ease;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .event-content {
+            animation: slideInRight 1s ease;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #0d6efd;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #0d6efd;
+            margin-top: 10px;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Competitions Section */
+        .competitions-section {
+            padding: 4rem 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .competitions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .competition-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .competition-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .competition-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .competition-content {
+            padding: 1.5rem;
+        }
+
+        .competition-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #0d1b3e;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 4rem 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #0d6efd;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #0d6efd;
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+            text-align: right;
+        }
+
+        .right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .left::after {
+            right: -10px;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-date {
+            color: #0d6efd;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Sponsors Section */
+        .sponsors-section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .sponsor-logo {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            max-width: 150px;
+            margin: 0 auto;
+        }
+
+        .sponsor-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0d1b3e;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #0d6efd;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a, .footer-contact a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover, .footer-contact a:hover {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-contact i {
+            margin-top: 5px;
+        }
+
+        .footer hr {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .list-inline-item:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+
+        .list-inline-item a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .list-inline-item a:hover {
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Original Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="tectics-link">TechTics Club</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="eduv-link">EduVision</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="shop-link">Shop</a>
+            </li>
+        </ul>
+        <a href="#sign-in" class="sign-in-link">Sign In</a>
+    </nav>
+
+    <!-- Second Navbar (Initially Hidden) -->
+    <div class="second-navbar" id="second-navbar">
+        <ul class="nav-menu" id="second-nav-menu">
+            <!-- Options will be dynamically added based on the selection -->
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">RoboFest 2024</h1>
+            <p class="hero-subtitle">The Ultimate Robotics Competition & Exhibition</p>
+            <a href="#register" class="cta-button">Register Now</a>
+        </div>
+    </section>
+
+    <!-- About Event Section -->
+    <section class="about-event">
+        <div class="event-content">
+            <h2 class="section-title">About RoboFest</h2>
+            <p>
+                RoboFest is TechticsClub's flagship annual event that brings together robotics enthusiasts, 
+                students, and industry professionals for a day of innovation, competition, and learning.
+            </p>
+            <p>
+                Now in its 5th year, RoboFest has grown to become one of the largest student-led robotics 
+                events in the region, featuring multiple competition categories, workshops, exhibitions, 
+                and networking opportunities.
+            </p>
+            <p>
+                Whether you're a seasoned robotics expert or just getting started, RoboFest offers something 
+                for everyone. Join us for an exciting celebration of technology and creativity!
+            </p>
+        </div>
+        <div class="event-image">
+            <img src="https://via.placeholder.com/600x400" alt="RoboFest event">
+        </div>
+    </section>
+
+    <!-- Competitions Section -->
+    <section class="competitions-section">
+        <h2 class="section-title">Competition Categories</h2>
+        <div class="competitions-grid">
+            <div class="competition-card">
+                <img src="https://via.placeholder.com/300x200" alt="Line Following Robot" class="competition-image">
+                <div class="competition-content">
+                    <h3 class="competition-title">Line Following Challenge</h3>
+                    <p>
+                        Design and program a robot that can follow a predefined path with precision and speed. 
+                        Navigate through increasingly difficult tracks with curves, intersections, and obstacles.
+                    </p>
+                </div>
+            </div>
+            <div class="competition-card">
+                <img src="https://via.placeholder.com/300x200" alt="Sumo Robot" class="competition-image">
+                <div class="competition-content">
+                    <h3 class="competition-title">Sumo Bot Wrestling</h3>
+                    <p>
+                        Build a robot designed to push opponents out of the ring. Strategy, power, and 
+                        maneuverability are key in this exciting head-to-head competition.
+                    </p>
+                </div>
+            </div>
+            <div class="competition-card">
+                <img src="https://via.placeholder.com/300x200" alt="Maze Solving Robot" class="competition-image">
+                <div class="competition-content">
+                    <h3 class="competition-title">Maze Solver</h3>
+                    <p>
+                        Create an autonomous robot that can navigate through a complex maze, find the 
+                        shortest path to the exit, and return to the starting point.
+                    </p>
+                </div>
+            </div>
+            <div class="competition-card">
+                <img src="https://via.placeholder.com/300x200" alt="Open Innovation" class="competition-image">
+                <div class="competition-content">
+                    <h3 class="competition-title">Open Innovation</h3>
+                    <p>
+                        Showcase your original robotics project addressing real-world problems. This category 
+                        rewards creativity, technical excellence, and practical applications.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <h2 class="section-title" style="text-align: center;">Event Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">March 15, 2024</div>
+                    <h3>Registration Opens</h3>
+                    <p>Team registration begins for all competition categories</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">April 10, 2024</div>
+                    <h3>Registration Closes</h3>
+                    <p>Last day to register your team for the competitions</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">April 15, 2024</div>
+                    <h3>Pre-event Workshop</h3>
+                    <p>Introductory workshop for participants to prepare for the competition</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">May 5-6, 2024</div>
+                    <h3>RoboFest Main Event</h3>
+                    <p>Two days of competitions, exhibitions, and networking</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">May 6, 2024</div>
+                    <h3>Awards Ceremony</h3>
+                    <p>Announcement of winners and prize distribution</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section class="sponsors-section">
+        <h2 class="section-title" style="text-align: center;">Our Sponsors</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
+            RoboFest is made possible by the generous support of our sponsors who share our 
+            vision of promoting robotics and technology education.
+        </p>
+        <div class="sponsors-grid">
+            <img src="https://via.placeholder.com/150x100" alt="Sponsor logo" class="sponsor-logo">
+            <img src="https://via.placeholder.com/150x100" alt="Sponsor logo" class="sponsor-logo">
+            <img src="https://via.placeholder.com/150x100" alt="Sponsor logo" class="sponsor-logo">
+            <img src="https://via.placeholder.com/150x100" alt="Sponsor logo" class="sponsor-logo">
+            <img src="https://via.placeholder.com/150x100" alt="Sponsor logo" class="sponsor-logo">
+        </div>
+    </section>
+
+    <!-- Register Section -->
+    <section id="register" class="register-section" style="text-align: center; margin: 5rem 0;">
+        <h2 class="section-title" style="text-align: center;">Ready to Participate?</h2>
+        <p style="max-width: 700px; margin: 0 auto 2rem;">
+            Join us for an unforgettable experience at RoboFest 2024. Register your team now 
+            and be part of the region's premier robotics competition!
+        </p>
+        <a href="#" class="cta-button">Register Your Team</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">TechticsClub</h5>
+                    <p>Empowering the next generation of tech innovators through learning, collaboration, and competition.</p>
+                    <div class="social-icons">
+                        <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <ul class="list-unstyled footer-contact">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> University Road, ICCBS Technology Incubator, Karachi</li>
+                        <li><i class="fas fa-phone me-2"></i> +92 325 8988646</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@techticsclub.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2025 TechticsClub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to display the second navbar and content
+        function displaySecondNavbar(section) {
+            const secondNavbar = document.getElementById('second-navbar');
+            const secondNavMenu = document.getElementById('second-nav-menu');
+            const contentSections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Hide all content sections
+            contentSections.forEach(section => section.classList.remove('active'));
+
+            // Show the second navbar
+            secondNavbar.style.display = 'flex';
+
+            // Clear current second navbar options
+            secondNavMenu.innerHTML = '';
+
+            // Remove active class from all nav-links in the first navbar
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Show corresponding options for each section
+            if (section === 'tectics') {
+                secondNavMenu.innerHTML = `
+                    <li class="nav-item"><a href="recent-trends-news.html" class="nav-link" onclick="showContent('tectics-section')" id="recent-trends-link">Recent Trends/News</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link" onclick="showContent('about-us')">About Us</a></li>
+                    <li class="nav-item"><a href="robofest.html" class="nav-link" onclick="showContent('robofest')">RoboFest</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('gallery')">Gallery</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('contact-us')">Contact Us</a></li>
+                `;
+            } else if (section === 'eduv') {
+                secondNavMenu.innerHTML = `
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('courses')">Courses</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('resources')">Resources</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('student-wiki')">Student Wiki</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('rnd')">R&D</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('partners')">Partners</a></li>
+                `;
+            } else if (section === 'shop') {
+                secondNavMenu.innerHTML = `
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('products')">Products</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('discounts')">Special Discounts</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('educational-pricing')">Educational Pricing</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('distributor')">Become a Distributor</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showContent('feedbacks')">Feedbacks</a></li>
+                `;
+            }
+
+            document.getElementById(`${section}-link`).classList.add('active');
+            showContent(`${section}-section`);
+        }
+
+        // Function to show content when clicked from the second navbar
+        function showContent(contentId) {
+            const contentSections = document.querySelectorAll('.content-section');
+            contentSections.forEach(section => {
+                if (section.id === contentId) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        }
+
+        // Event listeners for clicking the first navbar options
+        document.getElementById('tectics-link').addEventListener('click', function() {
+            displaySecondNavbar('tectics');
+        });
+
+        document.getElementById('eduv-link').addEventListener('click', function() {
+            displaySecondNavbar('eduv');
+        });
+
+        document.getElementById('shop-link').addEventListener('click', function() {
+            displaySecondNavbar('shop');
+        });
+    </script>
+</body>
+</html>

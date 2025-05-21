@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduVision - Partners</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <style>
+      /* General Reset */
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          overflow-x: hidden;
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+      }
+
+      /* Original Navigation Bar Styles */
+      .navbar {
+          background-color: #0d1b3e;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1000;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 5%;
+          height: 80px;
+      }
+
+      /* Navigation Menu on the Left */
+      .nav-menu {
+          display: flex;
+          list-style: none;
+          margin: 0;
+      }
+
+      .nav-item {
+          margin-right: 20px;
+      }
+
+      .nav-link {
+          color: white;
+          text-decoration: none;
+          padding: 30px 20px;
+          display: block;
+          font-size: 17px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+          color: #0d6efd;
+      }
+
+      /* Active link in the first navbar */
+      .nav-link.active {
+          color: #0d6efd;
+          border-bottom: 3px solid #0d6efd;
+      }
+
+      /* Second Navbar (Initially Hidden) */
+      .second-navbar {
+          background-color: #1a2647;
+          padding: 10px 5%;
+          position: fixed;
+          top: 80px;
+          left: 0;
+          right: 0;
+          z-index: 999;
+          justify-content: center;
+          text-align: center;
+          display: flex;
+      }
+
+      /* Center the links in the second navbar */
+      .second-navbar .nav-menu {
+          display: flex;
+          justify-content: center;
+          list-style: none;
+          margin: 0;
+      }
+
+      .second-navbar .nav-item {
+          margin-right: 20px;
+      }
+
+      .second-navbar .nav-link {
+          color: white;
+          text-decoration: none;
+          font-size: 16px;
+          padding: 10px 20px;
+          display: block;
+          font-weight: 500;
+      }
+
+      .second-navbar .nav-link:hover {
+          color: #0d6efd;
+      }
+
+      /* Highlighting the active item in the second navbar */
+      .second-navbar .nav-link.active {
+          background-color: #0d6efd;
+          color: white;
+          border-radius: 4px;
+      }
+
+      /* Main Content Styles */
+      .main-content {
+          margin-top: 160px;
+          padding: 40px 0;
+          flex: 1;
+      }
+
+      /* Hero Section */
+      .hero-section {
+          background: linear-gradient(rgba(13, 27, 62, 0.8), rgba(13, 27, 62, 0.8)), url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+          background-size: cover;
+          background-position: center;
+          color: white;
+          padding: 80px 0;
+          text-align: center;
+          margin-bottom: 50px;
+      }
+
+      .hero-title {
+          font-size: 48px;
+          font-weight: 700;
+          margin-bottom: 20px;
+      }
+
+      .hero-subtitle {
+          font-size: 20px;
+          margin-bottom: 30px;
+          max-width: 700px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+
+      /* Partner Card Styles */
+      .partner-card {
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          margin-bottom: 30px;
+          height: 100%;
+          background-color: white;
+          display: flex;
+          flex-direction: column;
+      }
+
+      .partner-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .partner-logo {
+          padding: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 180px;
+          background-color: #f8f9fa;
+      }
+
+      .partner-logo img {
+          max-width: 80%;
+          max-height: 120px;
+          transition: transform 0.3s ease;
+      }
+
+      .partner-card:hover .partner-logo img {
+          transform: scale(1.1);
+      }
+
+      .partner-content {
+          padding: 25px;
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+      }
+
+      .partner-name {
+          font-size: 22px;
+          font-weight: 600;
+          margin-bottom: 15px;
+          color: #0d1b3e;
+          text-align: center;
+      }
+
+      .partner-description {
+          color: #666;
+          margin-bottom: 20px;
+          flex-grow: 1;
+      }
+
+      .partner-tags {
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 20px;
+      }
+
+      .partner-tag {
+          background-color: #f1f1f1;
+          color: #0d1b3e;
+          padding: 5px 15px;
+          border-radius: 20px;
+          font-size: 12px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+      }
+
+      .partner-btn {
+          background-color: #0d1b3e;
+          color: white;
+          border: none;
+          padding: 8px 20px;
+          border-radius: 5px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          text-align: center;
+      }
+
+      .partner-btn:hover {
+          background-color: #0d6efd;
+          transform: translateY(-3px);
+      }
+
+      /* Sponsors Section */
+      .sponsors-section {
+          background-color: #f8f9fa;
+          padding: 60px 0;
+          margin: 50px 0;
+          text-align: center;
+      }
+
+      .sponsor-logo {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100px;
+          margin-bottom: 30px;
+          padding: 15px;
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .sponsor-logo:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .sponsor-logo img {
+          max-width: 80%;
+          max-height: 70px;
+      }
+
+      /* Testimonials Section */
+      .testimonials-section {
+          padding: 60px 0;
+      }
+
+      .testimonial-card {
+          background-color: white;
+          border-radius: 10px;
+          padding: 30px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          margin: 20px 0;
+          position: relative;
+      }
+
+      .testimonial-card:before {
+          content: '\201C';
+          font-size: 80px;
+          position: absolute;
+          top: -20px;
+          left: 20px;
+          color: rgba(13, 110, 253, 0.1);
+          font-family: Georgia, serif;
+      }
+
+      .testimonial-content {
+          font-style: italic;
+          color: #666;
+          margin-bottom: 20px;
+      }
+
+      .testimonial-author {
+          display: flex;
+          align-items: center;
+      }
+
+      .testimonial-author-image {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 15px;
+      }
+
+      .testimonial-author-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+      }
+
+      .testimonial-author-info h5 {
+          margin-bottom: 0;
+          font-weight: 600;
+          color: #0d1b3e;
+      }
+
+      .testimonial-author-info p {
+          color: #0d6efd;
+          margin-bottom: 0;
+      }
+
+      /* Partnership Benefits Section */
+      .benefits-section {
+          padding: 60px 0;
+      }
+
+      .benefit-item {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 30px;
+      }
+
+      .benefit-icon {
+          font-size: 24px;
+          color: #0d6efd;
+          margin-right: 15px;
+          background-color: rgba(13, 110, 253, 0.1);
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          flex-shrink: 0;
+      }
+
+      .benefit-content h4 {
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 10px;
+          color: #0d1b3e;
+      }
+
+      .benefit-content p {
+          color: #666;
+          margin-bottom: 0;
+      }
+
+      /* Partner Stats Section */
+      .stats-section {
+          background-color: #0d1b3e;
+          padding: 60px 0;
+          color: white;
+          text-align: center;
+      }
+
+      .stat-item {
+          padding: 30px;
+      }
+
+      .stat-number {
+          font-size: 48px;
+          font-weight: 700;
+          color: #fff;
+          margin-bottom: 10px;
+      }
+
+      .stat-label {
+          font-size: 18px;
+          color: rgba(255, 255, 255, 0.9);
+          font-weight: 500;
+      }
+
+      /* Call to Action Section */
+      .cta-section {
+          background: linear-gradient(to right, #0d1b3e, #0d6efd);
+          color: white;
+          padding: 60px 0;
+          text-align: center;
+          margin: 50px 0 0;
+      }
+
+      .cta-title {
+          font-size: 36px;
+          font-weight: 700;
+          margin-bottom: 20px;
+      }
+
+      .cta-subtitle {
+          font-size: 18px;
+          margin-bottom: 30px;
+          max-width: 700px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+
+      .cta-btn {
+          background-color: white;
+          color: #0d1b3e;
+          border: none;
+          padding: 12px 30px;
+          border-radius: 5px;
+          font-weight: 600;
+          font-size: 18px;
+          transition: all 0.3s ease;
+      }
+
+      .cta-btn:hover {
+          background-color: rgba(255, 255, 255, 0.9);
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Footer Styles */
+      .footer {
+          background-color: #0d1b3e !important;
+          color: white;
+          padding: 3rem 0;
+          width: 100%;
+      }
+
+      .footer h5 {
+          font-weight: 600;
+          margin-bottom: 1.5rem;
+      }
+
+      .footer p {
+          color: rgba(255, 255, 255, 0.8);
+      }
+
+      .social-icons a {
+          color: white;
+          font-size: 18px;
+          transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+          color: #0d6efd;
+      }
+
+      .footer-links li {
+          margin-bottom: 10px;
+      }
+
+      .footer-links a,
+      .footer-contact a {
+          color: rgba(255, 255, 255, 0.8);
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+
+      .footer-links a:hover,
+      .footer-contact a:hover {
+          color: #0d6efd;
+          text-decoration: none;
+      }
+
+      .footer-contact li {
+          margin-bottom: 10px;
+          display: flex;
+          align-items: flex-start;
+      }
+
+      .footer-contact i {
+          margin-top: 5px;
+          margin-right: 10px;
+      }
+
+      .footer hr {
+          background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .list-inline-item:not(:last-child) {
+          margin-right: 1.5rem;
+      }
+
+      .list-inline-item a {
+          color: rgba(255, 255, 255, 0.8);
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+
+      .list-inline-item a:hover {
+          color: #0d6efd;
+      }
+  </style>
+</head>
+
+<body>
+  <!-- Original Navigation Bar -->
+  <nav class="navbar">
+      <ul class="nav-menu">
+          <li class="nav-item">
+              <a href="#" class="nav-link" id="tectics-link">TechTics Club</a>
+          </li>
+          <li class="nav-item">
+              <a href="#" class="nav-link active" id="eduv-link">EduVision</a>
+          </li>
+          <li class="nav-item">
+              <a href="#" class="nav-link" id="shop-link">Shop</a>
+          </li>
+      </ul>
+      <!-- Updated Sign In link to follow the same styling as other navbar links -->
+      <a href="#sign-in" class="nav-link sign-in-link">Sign In</a>
+  </nav>
+
+  <!-- Second Navbar -->
+  <div class="second-navbar" id="second-navbar">
+      <ul class="nav-menu" id="second-nav-menu">
+          <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+          <li class="nav-item"><a href="student-wiki.html" class="nav-link">Student Wiki</a></li>
+          <li class="nav-item"><a href="rnd.html" class="nav-link">R&D</a></li>
+          <li class="nav-item"><a href="partners.html" class="nav-link active">Partners</a></li>
+      </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-section" data-aos="fade-up">
+          <div class="container">
+              <h1 class="hero-title">Our Partners</h1>
+              <p class="hero-subtitle">Collaborating with industry leaders, academic institutions, and organizations to drive innovation and create opportunities for our community.</p>
+              <button class="btn btn-primary btn-lg">Become a Partner</button>
+          </div>
+      </section>
+
+      <!-- Partnership Benefits -->
+      <section class="benefits-section">
+          <div class="container">
+              <h2 class="text-center mb-5" data-aos="fade-up">Partnership Benefits</h2>
+              <div class="row">
+                  <!-- Left Column Benefits -->
+                  <div class="col-md-6" data-aos="fade-right">
+                      <div class="benefit-item">
+                          <div class="benefit-icon">
+                              <i class="fas fa-users"></i>
+                          </div>
+                          <div class="benefit-content">
+                              <h4>Access to Talent</h4>
+                              <p>Connect with a diverse pool of talented students and graduates skilled in various technological domains.</p>
+                          </div>
+                      </div>
+                      <div class="benefit-item">
+                          <div class="benefit-icon">
+                              <i class="fas fa-lightbulb"></i>
+                          </div>
+                          <div class="benefit-content">
+                              <h4>Innovation Collaboration</h4>
+                              <p>Collaborate on innovative projects and research initiatives that address real-world challenges.</p>
+                          </div>
+                      </div>
+                      <div class="benefit-item">
+                          <div class="benefit-icon">
+                              <i class="fas fa-chalkboard-teacher"></i>
+                          </div>
+                          <div class="benefit-content">
+                              <h4>Educational Resources</h4>
+                              <p>Gain access to educational content, workshops, and training programs for your organization.</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Right Column Benefits -->
+                  <div class="col-md-6" data-aos="fade-left">
+                      <div class="benefit-item">
+                          <div class="benefit-icon">
+                              <i class="fas fa-handshake"></i>
+                          </div>
+                          <div class="benefit-content">
+                              <h4>Networking Opportunities</h4>
+                              <p>Connect with other industry leaders, academic institutions, and technology enthusiasts.</p>
+                          </div>
+                      </div>
+                      <div class="benefit-item">
+                          <div class="benefit-icon">
+                              <i class="fas fa-bullhorn"></i>
+                          </div>
+                          <div class="benefit-content">
+                              <h4>Brand Visibility</h4>
+                              <p>Enhance your brand's visibility among tech-savvy students, educators, and industry professionals.</p>
+                          </div>
+                      </div>
+                      <div class="benefit-item">
+                          <div class="benefit-icon">
+                              <i class="fas fa-rocket"></i>
+                          </div>
+                          <div class="benefit-content">
+                              <h4>Strategic Growth</h4>
+                              <p>Accelerate your organization's growth through strategic collaborations and knowledge sharing.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Partner Stats -->
+      <section class="stats-section">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                      <div class="stat-item">
+                          <div class="stat-number" id="industry-count">45+</div>
+                          <div class="stat-label">Industry Partners</div>
+                      </div>
+                  </div>
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                      <div class="stat-item">
+                          <div class="stat-number" id="academic-count">20+</div>
+                          <div class="stat-label">Academic Institutions</div>
+                      </div>
+                  </div>
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                      <div class="stat-item">
+                          <div class="stat-number" id="projects-count">120+</div>
+                          <div class="stat-label">Collaborative Projects</div>
+                      </div>
+                  </div>
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                      <div class="stat-item">
+                          <div class="stat-number" id="students-count">5000+</div>
+                          <div class="stat-label">Students Impacted</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Industry Partners -->
+      <section class="container mt-5">
+          <h2 class="text-center mb-5" data-aos="fade-up">Industry Partners</h2>
+          <div class="row">
+              <!-- Partner 1 -->
+              <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                  <div class="partner-card">
+                      <div class="partner-logo">
+                          <img src="https://via.placeholder.com/150x80?text=TechCorp" alt="TechCorp">
+                      </div>
+                      <div class="partner-content">
+                          <h3 class="partner-name">TechCorp</h3>
+                          <p class="partner-description">A leading technology corporation that specializes in software development, cloud computing, and artificial intelligence solutions.</p>
+                          <div class="partner-tags">
+                              <span class="partner-tag">Software</span>
+                              <span class="partner-tag">AI</span>
+                              <span class="partner-tag">Cloud</span>
+                          </div>
+                          <a href="#" class="partner-btn">Visit Partner</a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Partner 2 -->
+              <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                  <div class="partner-card">
+                      <div class="partner-logo">
+                          <img src="https://via.placeholder.com/150x80?text=RoboInnovate" alt="RoboInnovate">
+                      </div>
+                      <div class="partner-content">
+                          <h3 class="partner-name">RoboInnovate</h3>
+                          <p class="partner-description">A robotics company focused on developing cutting-edge robotics solutions for industrial automation and educational purposes.</p>
+                          <div class="partner-tags">
+                              <span class="partner-tag">Robotics</span>
+                              <span class="partner-tag">Automation</span>
+                              <span class="partner-tag">Engineering</span>
+                          </div>
+                          <a href="#" class="partner-btn">Visit Partner</a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Partner 3 -->
+              <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                  <div class="partner-card">
+                      <div class="partner-logo">
+                          <img src="https://via.placeholder.com/150x80?text=DataVision" alt="DataVision">
+                      </div>
+                      <div class="partner-content">
+                          <h3 class="partner-name">DataVision</h3>
+                          <p class="partner-description">A data analytics company that provides advanced analytics solutions, machine learning services, and data visualization tools.</p>
+                          <div class="partner-tags">
+                              <span class="partner-tag">Data Analytics</span>
+                              <span class="partner-tag">Machine Learning</span>
+                              <span class="partner-tag">Visualization</span>
+                          </div>
+                          <a href="#" class="partner-btn">Visit Partner</a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Partner 4 -->
+              <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                  <div class="partner-card">
+                      <div class="partner-logo">
+                          <img src="https://via.placeholder.com/150x80?text=IoTSmart" alt="IoTSmart">
+                      </div>
+                      <div class="partner-content">
+                          <h3 class="partner-name">IoTSmart</h3>
+                          <p class="partner-description">An IoT company that designs and implements smart systems for homes, businesses, and industrial applications.</p>
+                          <div class="partner-tags">
+                              <span class="partner-tag">IoT</span>
+                              <span class="partner-tag">Smart Systems</span>
+                              <span class="partner-tag">Connected Devices</span>
+                          </div>
+                          <a href="#" class="partner-btn">Visit Partner</a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Partner 5 -->
+              <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                  <div class="partner-card">
+                      <div class="partner-logo">
+                          <img src="https://via.placeholder.com/150x80?text=CircuitLabs" alt="CircuitLabs">
+                      </div>
+                      <div class="partner-content">
+                          <h3 class="partner-name">CircuitLabs</h3>
+                          <p class="partner-description">An electronics manufacturing company specializing in circuit design, PCB development, and embedded systems.</p>
+                          <div class="partner-tags">
+                              <span class="partner-tag">Electronics</span>
+                              <span class="partner-tag">PCB Design</span>
+                              <span class="partner-tag">Embedded Systems</span>
+                          </div>
+                          <a href="#" class="partner-btn">Visit Partner</a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Partner 6 -->
+              <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                  <div class="partner-card">
+                      <div class="partner-logo">
+                          <img src="https://via.placeholder.com/150x80?text=VRTech" alt="VRTech">
+                      </div>
+                      <div class="partner-content">
+                          <h3 class="partner-name">VRTech</h3>
+                          <p class="partner-description">A company focused on virtual and augmented reality solutions for education, training, and entertainment applications.</p>
+                          <div class="partner-tags">
+                              <span class="partner-tag">VR</span>
+                              <span class="partner-tag">AR</span>
+                              <span class="partner-tag">Immersive Tech</span>
+                          </div>
+                          <a href="#" class="partner-btn">Visit Partner</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Academic Partners -->
+      <section class="container mt-5">
+          <h2 class="text-center mb-5" data-aos="fade-up">Academic Partners</h2>
+          <div class="row">
+              <!-- Academic Partner 1 -->
+              <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                  <div class="partner-card">
+                      <div class="partner-logo">
+                          <img src="https://via.placeholder.com/150x80?text=Tech+University" alt="Tech University">
+                      </div>
+                      <div class="partner-content">
+                          <h3 class="partner-name">Tech University</h3>
+                          <p class="partner-description">A leading university known for its strong engineering, computer science, and technology programs.</p>
+                          <div class="partner-tags">
+                              <span class="partner-tag">Engineering</span>
+                              <span class="partner-tag">Computer Science</span>
+                              <span class="partner-tag">Research</span>
+                          </div>
+                          <a href="#" class="partner-btn">Visit Partner</a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Academic Partner 2 -->
+              <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                  <div class="partner-card">
+                      <div class="partner-logo">
+                          <img src="https://via.placeholder.com/150x80?text=Innovation+Institute" alt="Innovation Institute">
+                      </div>
+                      <div class="partner-content">
+                          <h3 class="partner-name">Innovation Institute</h3>
+                          <p class="partner-description">A research-focused institution dedicated to fostering innovation and technological advancement.</p>
+                          <div class="partner-tags">
+                              <span class="partner-tag">Research</span>
+                              <span class="partner-tag">Innovation</span>
+                              <span class="partner-tag">Technology</span>
+                          </div>
+                          <a href="#" class="partner-btn">Visit Partner</a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Academic Partner 3 -->
+              <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                  <div class="partner-card">
+                      <div class="partner-logo">
+                          <img src="https://via.placeholder.com/150x80?text=STEM+Academy" alt="STEM Academy">
+                      </div>
+                      <div class="partner-content">
+                          <h3 class="partner-name">STEM Academy</h3>
+                          <p class="partner-description">An educational institution focused on STEM education and preparing students for careers in technology.</p>
+                          <div class="partner-tags">
+                              <span class="partner-tag">STEM</span>
+                              <span class="partner-tag">Education</span>
+                              <span class="partner-tag">Training</span>
+                          </div>
+                          <a href="#" class="partner-btn">Visit Partner</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Sponsors Section -->
+      <section class="sponsors-section">
+          <div class="container">
+              <h2 class="text-center mb-5" data-aos="fade-up">Our Sponsors</h2>
+              <div class="row">
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                      <div class="sponsor-logo">
+                          <img src="https://via.placeholder.com/120x60?text=Sponsor+1" alt="Sponsor 1">
+                      </div>
+                  </div>
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                      <div class="sponsor-logo">
+                          <img src="https://via.placeholder.com/120x60?text=Sponsor+2" alt="Sponsor 2">
+                      </div>
+                  </div>
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                      <div class="sponsor-logo">
+                          <img src="https://via.placeholder.com/120x60?text=Sponsor+3" alt="Sponsor 3">
+                      </div>
+                  </div>
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                      <div class="sponsor-logo">
+                          <img src="https://via.placeholder.com/120x60?text=Sponsor+4" alt="Sponsor 4">
+                      </div>
+                  </div>
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                      <div class="sponsor-logo">
+                          <img src="https://via.placeholder.com/120x60?text=Sponsor+5" alt="Sponsor 5">
+                      </div>
+                  </div>
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                      <div class="sponsor-logo">
+                          <img src="https://via.placeholder.com/120x60?text=Sponsor+6" alt="Sponsor 6">
+                      </div>
+                  </div>
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                      <div class="sponsor-logo">
+                          <img src="https://via.placeholder.com/120x60?text=Sponsor+7" alt="Sponsor 7">
+                      </div>
+                  </div>
+                  <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                      <div class="sponsor-logo">
+                          <img src="https://via.placeholder.com/120x60?text=Sponsor+8" alt="Sponsor 8">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="testimonials-section">
+          <div class="container">
+              <h2 class="text-center mb-5" data-aos="fade-up">Partner Testimonials</h2>
+              <div class="row">
+                  <!-- Testimonial 1 -->
+                  <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                      <div class="testimonial-card">
+                          <p class="testimonial-content">Our partnership with EduVision has been incredibly valuable. We've been able to collaborate on cutting-edge research projects and connect with talented students who have brought fresh perspectives to our organization.</p>
+                          <div class="testimonial-author">
+                              <div class="testimonial-author-image">
+                                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="David Kim">
+                              </div>
+                              <div class="testimonial-author-info">
+                                  <h5>David Kim</h5>
+                                  <p>CTO, TechCorp</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Testimonial 2 -->
+                  <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                      <div class="testimonial-card">
+                          <p class="testimonial-content">EduVision has been an exceptional partner in our educational initiatives. The collaboration has helped us enhance our curriculum and provide our students with valuable industry connections and practical experiences.</p>
+                          <div class="testimonial-author">
+                              <div class="testimonial-author-image">
+                                  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" alt="Dr. Sarah Chen">
+                              </div>
+                              <div class="testimonial-author-info">
+                                  <h5>Dr. Sarah Chen</h5>
+                                  <p>Dean, Tech University</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Testimonial 3 -->
+                  <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                      <div class="testimonial-card">
+                          <p class="testimonial-content">Our sponsorship of EduVision has provided excellent visibility for our brand among the tech community. The events and programs they organize have consistently delivered high value and meaningful engagement.</p>
+                          <div class="testimonial-author">
+                              <div class="testimonial-author-image">
+                                  <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Michael Johnson">
+                              </div>
+                              <div class="testimonial-author-info">
+                                  <h5>Michael Johnson</h5>
+                                  <p>Marketing Director, IoTSmart</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Testimonial 4 -->
+                  <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                      <div class="testimonial-card">
+                          <p class="testimonial-content">The collaborative projects we've undertaken with EduVision have yielded innovative solutions that have significantly impacted our product development. The fresh ideas and enthusiasm of the students have been invaluable.</p>
+                          <div class="testimonial-author">
+                              <div class="testimonial-author-image">
+                                  <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1361&q=80" alt="Emily Rodriguez">
+                              </div>
+                              <div class="testimonial-author-info">
+                                  <h5>Emily Rodriguez</h5>
+                                  <p>Lead Engineer, RoboInnovate</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+          <div class="container">
+              <h2 class="cta-title" data-aos="fade-up">Become Our Partner</h2>
+              <p class="cta-subtitle" data-aos="fade-up" data-aos-delay="100">Join our growing network of partners and collaborators to drive innovation, create opportunities, and make a positive impact in the tech community.</p>
+              <button class="cta-btn" data-aos="fade-up" data-aos-delay="200">Partner With Us</button>
+          </div>
+      </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4 mb-4 mb-md-0">
+                  <h5 class="mb-4">TechticsClub</h5>
+                  <p>Empowering the next generation of tech innovators through learning, collaboration, and competition.</p>
+                  <div class="social-icons">
+                      <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                      <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                      <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                      <a href="#"><i class="fab fa-youtube"></i></a>
+                  </div>
+              </div>
+              <div class="col-md-4 mb-4 mb-md-0">
+                  <h5 class="mb-4">Quick Links</h5>
+                  <ul class="list-unstyled footer-links">
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="about.html">About Us</a></li>
+                      <li><a href="#events">Events</a></li>
+                      <li><a href="#resources">Resources</a></li>
+                      <li><a href="contact.html">Contact Us</a></li>
+                  </ul>
+              </div>
+              <div class="col-md-4">
+                  <h5 class="mb-4">Contact Info</h5>
+                  <ul class="list-unstyled footer-contact">
+                      <li><i class="fas fa-map-marker-alt"></i> University Road, ICCBS Technology Incubator, Karachi</li>
+                      <li><i class="fas fa-phone"></i> +92 325 8988646</li>
+                      <li><i class="fas fa-envelope"></i> <a href="mailto:info@techticsclub.com">info@techticsclub.com</a></li>
+                  </ul>
+              </div>
+          </div>
+          <hr class="mt-4 mb-4">
+          <div class="row">
+              <div class="col-md-6 mb-3 mb-md-0">
+                  <p class="mb-0">&copy; 2025 TechticsClub. All rights reserved.</p>
+              </div>
+              <div class="col-md-6 text-md-end">
+                  <ul class="list-inline mb-0">
+                      <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                      <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+      // Initialize AOS animation library
+      AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true
+      });
+
+      // Event listeners for clicking the first navbar options
+      document.getElementById('tectics-link').addEventListener('click', function () {
+          window.location.href = 'tectics.html';
+      });
+
+      document.getElementById('eduv-link').addEventListener('click', function () {
+          // Already on EduVision page
+      });
+
+      document.getElementById('shop-link').addEventListener('click', function () {
+          window.location.href = 'shop.html';
+      });
+
+      // Animate the stats numbers
+      function animateStats() {
+          const statsElements = document.querySelectorAll('.stat-number');
+          statsElements.forEach(element => {
+              const target = element.textContent;
+              let current = 0;
+              const increment = parseInt(target) / 100;
+              
+              const timer = setInterval(() => {
+                  current += increment;
+                  if (current >= parseInt(target)) {
+                      element.textContent = target;
+                      clearInterval(timer);
+                  } else {
+                      element.textContent = Math.ceil(current) + '+';
+                  }
+              }, 20);
+          });
+      }
+
+      // Call the animation when the stats section is in view
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  animateStats();
+                  observer.unobserve(entry.target);
+              }
+          });
+      });
+
+      observer.observe(document.querySelector('.stats-section'));
+  </script>
+</body>
+
+</html>

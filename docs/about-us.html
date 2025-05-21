@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TechTics Club</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        /* Original Navigation Bar Styles */
+        .navbar {
+            background-color: #0d1b3e;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            height: 80px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navigation Menu on the Left */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 30px 20px;
+            display: block;
+            font-size: 17px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        /* Active link in the first navbar */
+        .nav-link.active {
+            color: #0d6efd;
+            border-bottom: 3px solid #0d6efd;
+        }
+
+        /* Second Navbar (Initially Hidden) */
+        .second-navbar {
+            display: none;
+            background-color: #1a2647;
+            padding: 10px 5%;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Center the links in the second navbar */
+        .second-navbar .nav-menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+        }
+
+        .second-navbar .nav-item {
+            margin-right: 20px;
+        }
+
+        .second-navbar .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .second-navbar .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        /* Highlighting the active item in the second navbar */
+        .second-navbar .nav-link.active {
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #0d1b3e !important;
+            color: white;
+            padding: 3rem 0;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #0d6efd;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a,
+        .footer-contact a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-contact a:hover {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-contact i {
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+
+        .footer hr {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .list-inline-item:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+
+        .list-inline-item a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .list-inline-item a:hover {
+            color: #0d6efd;
+        }
+
+        /* Page Specific Styles - About Us */
+        .page-content {
+            margin-top: 140px;
+            padding: 40px 0;
+            min-height: 600px;
+        }
+
+        .about-hero {
+            position: relative;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1581092335397-9583eb92d232?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            margin-bottom: 60px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(13, 27, 62, 0.9), rgba(13, 27, 62, 0.2));
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-button {
+            display: inline-block;
+            background-color: #0d6efd;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .hero-button:hover {
+            background-color: #0b5ed7;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+            color: #0d1b3e;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #0d6efd;
+        }
+
+        .about-section {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .mission-vision {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+            margin: 60px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .mission-card, .vision-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            color: #0d6efd;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #0d1b3e;
+        }
+
+        .team-section {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .team-member {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .member-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .member-image:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            border: 3px solid #0d6efd;
+            box-sizing: border-box;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .member-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #0d1b3e;
+        }
+
+        .member-position {
+            font-size: 16px;
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+
+        .member-social {
+            margin-top: 15px;
+        }
+
+        .member-social a {
+            color: #666;
+            margin: 0 5px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .member-social a:hover {
+            color: #0d6efd;
+        }
+
+        .timeline-section {
+            position: relative;
+            padding: 60px 0;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 60px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: #0d6efd;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -13px;
+            background-color: white;
+            border: 4px solid #0d6efd;
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            border-width: 10px;
+            border-style: solid;
+            top: 20px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            border-color: transparent transparent transparent white;
+            right: -20px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            border-color: transparent white transparent transparent;
+            left: -20px;
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: #0d6efd;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #0d1b3e;
+        }
+
+        .stats-section {
+            background-color: #0d1b3e;
+            padding: 80px 0;
+            color: white;
+            margin: 60px 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #0d6efd;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .partners-section {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .partner-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            padding: 15px;
+            margin-bottom: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 70px;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+        }
+
+        .testimonials-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+            margin-bottom: 60px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            position: relative;
+            padding-top: 30px;
+        }
+
+        .testimonial-text:before,
+        .testimonial-text:after {
+            content: '\201C';
+            font-size: 60px;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            color: #0d6efd;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #0d1b3e;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .call-to-action {
+            background: linear-gradient(135deg, #0d6efd 0%, #0d1b3e 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #0d6efd;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0d1b3e;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Floating animation for icons */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid #0d6efd;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 991px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+                right: auto;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -20px;
+                border-color: transparent white transparent transparent;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            
+            .about-hero {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Original Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" id="tectics-link">TechTics Club</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="eduv-link">EduVision</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="shop-link">Shop</a>
+            </li>
+        </ul>
+        <a href="#sign-in" class="nav-link sign-in-link">Sign In</a>
+    </nav>
+
+    <!-- Second Navbar -->
+    <div class="second-navbar" id="second-navbar" style="display: flex;">
+        <ul class="nav-menu" id="second-nav-menu">
+            <li class="nav-item"><a href="recent-trends-news.html" class="nav-link">Recent Trends/News</a></li>
+            <li class="nav-item"><a href="about-us.html" class="nav-link active">About Us</a></li>
+            <li class="nav-item"><a href="robofest.html" class="nav-link">RoboFest</a></li>
+            <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+            <li class="nav-item"><a href="contact-us.html" class="nav-link">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Content - About Us -->
+    <div class="page-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="about-hero animate__animated animate__fadeIn">
+                <div class="hero-overlay">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Where Technology Meets Robotics</h1>
+                        <p class="hero-subtitle">Bridging the gap between innovation and hands-on learning since 2019.</p>
+                        <a href="contact-us.html" class="hero-button">Join Our Community <i class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Us Section -->
+            <section class="about-section">
+                <div class="row">
+                    <div class="col-lg-12" data-aos="fade-right">
+                        <h2 class="section-title">Introduction</h2>
+                        <p>TechTics is a fusion of two words: "Tech" from Technology and "Tics" from Robotics. Our tagline, "Where Technology Meets Robotics," reflects our commitment to bridging the gap between innovation and hands-on learning. Founded in 2019 at the GEARs 19 competition (PAF-KIET), TechTics began as a student-led startup with a vision to create a platform where young minds could learn, innovate, and compete in robotics. We started with a small batch of just eight students and have now flourished into a thriving community, with over 300 graduates in Robotics and STEM.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission and Vision -->
+            <section class="mission-vision">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12" data-aos="fade-up">
+                            <div class="vision-card">
+                                <div class="card-icon float-animation">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <h3 class="card-title">Our Vision</h3>
+                                <p>To introduce a centralized robotics curriculum for students from Grade 3 to Grade 12 in Pakistan, while providing them with research and development opportunities. This dual approach enables students to transform their innovative ideas into reality and contribute meaningfully to the field of robotics.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Team -->
+            <section class="team-section">
+                <h2 class="section-title">TechTics Team</h2>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6" data-aos="fade-up">
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="images/kamran.jpg" alt="Kamran Ali">
+                            </div>
+                            <h3 class="member-name">Kamran Ali</h3>
+                            <p class="member-position">Founder</p>
+                            <p>Kamran Ali, founder of TechTics Club, is passionate about fostering structured robotics education. He aims to empower young innovators and shape the future of robotics. TechTics Club and RoboFest are his brainchildren, driving forces for innovation and growth.</p>
+                        
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="images/asil.jpg" alt="Asil">
+                            </div>
+                            <h3 class="member-name">Asil</h3>
+                            <p class="member-position">Co-Founder</p>
+                            <p>Asil, visionary co-founder of TechTics Club, ignites innovation with his passion and drive. A true pioneer in robotics and STEM education, he inspires excellence and empowers the next generation of leaders.</p>
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Journey Timeline -->
+            <section class="timeline-section">
+                <h2 class="section-title">Our Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2019</div>
+                            <h3 class="timeline-title">Humble Beginnings</h3>
+                            <p>Founded at the GEARs 19 competition at PAF-KIET, TechTics started as a small group of eight students passionate about robotics and STEM.
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2022</div>
+                            <h3 class="timeline-title">RoboFest Takes Off</h3>
+                            <p>RoboFest embarked on its first journey, featuring 7 esteemed educational institutions and over 400+ enthusiastic students.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2023</div>
+                            <h3 class="timeline-title">Remarkable Growth</h3>
+                            <p>RoboFest witnessed remarkable growth, drawing in 10 prestigious institutions and a staggering 700+ students.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2024</div>
+                            <h3 class="timeline-title">A Year of Innovation</h3>
+                            <p>Building on the success of last year's event, RoboFest 2024 raised the bar for robotics and STEM education in Pakistan.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-6">
+                            <div class="stat-item" data-aos="fade-up">
+                                <div>
+                                    <span class="stat-number" data-val="700">0</span>
+                                    <span class="stat-number">+</span>
+                                </div>
+                                <p class="stat-label">Young Innovators</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                                <div>
+                                    <span class="stat-number" data-val="4">0</span>
+                                </div>
+                                <p class="stat-label">Exciting Categories</p>
+                                <p class="small text-white-50">Robotics, Programming, STEM, E-Gaming</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                                <div>
+                                    <span class="stat-number" data-val="16">0</span>
+                                </div>
+                                <p class="stat-label">Electrifying Competitions</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                                <div>
+                                    <span class="stat-number" data-val="300">0</span>
+                                    <span class="stat-number">+</span>
+                                </div>
+                                <p class="stat-label">STEM Graduates</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RoboFest 2024 Section -->
+            <section class="about-section">
+                <div class="row">
+                    <div class="col-lg-12" data-aos="fade-up">
+                        <h2 class="section-title">RoboFest 2024: A Year of Innovation</h2>
+                        <p>Building on the success of last year's event, RoboFest 2024 raised the bar for robotics and STEM education in Pakistan.</p>
+                        <ul class="mt-4">
+                            <li><strong>700+ Young Innovators:</strong> Joined forces to showcase their skills and creativity.</li>
+                            <li><strong>4 Exciting Categories:</strong> Robotics, Programming, STEM, and E-Gaming.</li>
+                            <li><strong>16 Electrifying Competitions:</strong> Teams went head-to-head, showcasing their exceptional skills.</li>
+                            <li><strong>Winners:</strong> Habib Girls' School Official took home the coveted first prize, followed closely by Fajr Academy Official.</li>
+                        </ul>
+                        <p class="mt-4">We extend our heartfelt gratitude to our valued collaborators, including Aga Khan School, for their unwavering support. Together, we're shaping a brighter future for Pakistan's young innovators.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Partners -->
+            <section class="partners-section">
+                <h2 class="section-title">Our Partners</h2>
+                <div class="row">
+                    <div class="col-md-6" data-aos="fade-up">
+                        <div class="partner-logo">
+                            <img src="images/mlsc-logo.png" alt="MLSC DHA Suffa">
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="partner-logo">
+                            <img src="images/robot-academy-logo.png" alt="Robot Academy Berlin">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="call-to-action" data-aos="fade-up">
+                <div class="container">
+                    <h2 class="cta-title">Join Our Community Today!</h2>
+                    <p class="cta-text">Become part of a thriving community of tech enthusiasts. Whether you're a beginner or an expert, there's a place for you in TechTics Club.</p>
+                    <a href="contact-us.html" class="cta-button">Join Now <i class="fas fa-arrow-right ms-2"></i></a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">TechticsClub</h5>
+                    <p>Empowering the next generation of tech innovators through learning, collaboration, and competition.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/share/1FwMtvXVXR/" class="me-2" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/techticsclub?igsh=MTEwN2N5NTA1azFnYw==" class="me-2" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="recent-trends-news.html">Recent Trends/News</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="robofest.html">RoboFest</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <ul class="list-unstyled footer-contact">
+                        <li><i class="fas fa-envelope me-2"></i> <a href="mailto:info@techticsclub.com">info@techticsclub.com</a></li>
+                        <li><i class="fas fa-phone me-2"></i> <a href="tel:+923258988646">0325-8988646</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2024 TechticsClub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and AOS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // JavaScript to toggle the second navbar and content section visibility
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show the TechTics section by default
+            displaySecondNavbar('tectics');
+            
+            // Set the active class for TechTics link
+            document.getElementById('tectics-link').classList.add('active');
+            
+            // Event listeners for main navbar options
+            document.getElementById('tectics-link').addEventListener('click', function() {
+                displaySecondNavbar('tectics');
+                setActiveMainLink('tectics-link');
+            });
+            
+            document.getElementById('eduv-link').addEventListener('click', function() {
+                displaySecondNavbar('eduv');
+                setActiveMainLink('eduv-link');
+            });
+            
+            document.getElementById('shop-link').addEventListener('click', function() {
+                displaySecondNavbar('shop');
+                setActiveMainLink('shop-link');
+            });
+            
+            // Function to set active main link
+            function setActiveMainLink(linkId) {
+                document.querySelectorAll('.navbar .nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                document.getElementById(linkId).classList.add('active');
+            }
+            
+            // Function to display the second navbar and content
+            function displaySecondNavbar(section) {
+                const secondNavbar = document.getElementById('second-navbar');
+                const secondNavMenu = document.getElementById('second-nav-menu');
+                
+                // Show the second navbar
+                secondNavbar.style.display = 'flex';
+                
+                // Clear current second navbar options
+                secondNavMenu.innerHTML = '';
+                
+                // Show corresponding options for each section
+                if (section === 'tectics') {
+                    secondNavMenu.innerHTML = `
+                        <li class="nav-item"><a href="recent-trends-news.html" class="nav-link">Recent Trends/News</a></li>
+                        <li class="nav-item"><a href="about-us.html" class="nav-link active">About Us</a></li>
+                        <li class="nav-item"><a href="robofest.html" class="nav-link">RoboFest</a></li>
+                        <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                        <li class="nav-item"><a href="contact-us.html" class="nav-link">Contact Us</a></li>
+                    `;
+                } else if (section === 'eduv') {
+                    secondNavMenu.innerHTML = `
+                        <li class="nav-item"><a href="#" class="nav-link">Courses</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Resources</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Student Wiki</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">R&D</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Partners</a></li>
+                    `;
+                } else if (section === 'shop') {
+                    secondNavMenu.innerHTML = `
+                        <li class="nav-item"><a href="#" class="nav-link">Products</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Special Discounts</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Educational Pricing</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Become a Distributor</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Feedbacks</a></li>
+                    `;
+                }
+            }
+        });
+
+        // Animate stats counter - Fixed version to prevent NaN issues
+        const animateCounters = function() {
+            const counters = document.querySelectorAll('.stat-number[data-val]');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = parseInt(counter.getAttribute('data-val'));
+                    const count = parseInt(counter.innerText || '0');
+                    const increment = Math.max(1, Math.trunc(target / speed));
+
+                    if (count < target) {
+                        counter.innerText = count + increment;
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Check if element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Trigger counter animation when stats section is in viewport
+        window.addEventListener('scroll', function() {
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection && isInViewport(statsSection)) {
+                animateCounters();
+                // Remove event listener after animation has started
+                window.removeEventListener('scroll', this);
+            }
+        });
+    </script>
+</body>
+
+</html>
