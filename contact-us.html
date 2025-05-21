@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TechTics Club</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        /* Original Navigation Bar Styles */
+        .navbar {
+            background-color: #0d1b3e;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            height: 80px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navigation Menu on the Left */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 30px 20px;
+            display: block;
+            font-size: 17px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        /* Active link in the first navbar */
+        .nav-link.active {
+            color: #0d6efd;
+            border-bottom: 3px solid #0d6efd;
+        }
+
+        /* Second Navbar (Initially Hidden) */
+        .second-navbar {
+            display: none;
+            background-color: #1a2647;
+            padding: 10px 5%;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Center the links in the second navbar */
+        .second-navbar .nav-menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+        }
+
+        .second-navbar .nav-item {
+            margin-right: 20px;
+        }
+
+        .second-navbar .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .second-navbar .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        /* Highlighting the active item in the second navbar */
+        .second-navbar .nav-link.active {
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #0d1b3e !important;
+            color: white;
+            padding: 3rem 0;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #0d6efd;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a,
+        .footer-contact a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-contact a:hover {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-contact i {
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+
+        .footer hr {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .list-inline-item:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+
+        .list-inline-item a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .list-inline-item a:hover {
+            color: #0d6efd;
+        }
+
+        /* Page Specific Styles - Contact Us */
+        .page-content {
+            margin-top: 140px;
+            padding: 40px 0;
+            min-height: 600px;
+        }
+
+        .contact-hero {
+            position: relative;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            margin-bottom: 60px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(13, 27, 62, 0.9), rgba(13, 27, 62, 0.2));
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .section-title {
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+            color: #0d1b3e;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #0d6efd;
+        }
+
+        .section-title.text-center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .contact-info-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 40px;
+            color: #0d6efd;
+            margin-bottom: 20px;
+        }
+
+        .contact-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #0d1b3e;
+        }
+
+        .contact-text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .contact-link {
+            color: #0d6efd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #0d1b3e;
+            text-decoration: underline;
+        }
+
+        .contact-form-container {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+            border-radius: 15px;
+            margin-bottom: 60px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #0d1b3e;
+            margin-bottom: 10px;
+        }
+
+        .form-control {
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+        .submit-button {
+            background-color: #0d6efd;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+        }
+
+        .faq-section {
+            margin-bottom: 60px;
+        }
+
+        .accordion-item {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: none;
+        }
+
+        .accordion-button {
+            font-weight: 600;
+            color: #0d1b3e;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: #0d6efd;
+            background-color: #f8f9fa;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(13, 110, 253, 0.25);
+        }
+
+        .accordion-body {
+            padding: 20px;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .social-connect {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .social-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #0d1b3e;
+        }
+
+        .social-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-icons-large {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-icon-large {
+            width: 60px;
+            height: 60px;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 15px 15px;
+            font-size: 24px;
+            color: #0d1b3e;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon-large:hover {
+            background-color: #0d6efd;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter-section {
+            background: linear-gradient(135deg, #0d6efd 0%, #0d1b3e 100%);
+            color: white;
+            padding: 60px 0;
+            border-radius: 15px;
+            margin-bottom: 60px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-subtitle {
+            font-size: 16px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .newsletter-button {
+            background-color: #0d1b3e;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .newsletter-button:hover {
+            background-color: #0b5ed7;
+        }
+
+        /* Floating animation for contact icons */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Success message animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991px) {
+            .contact-hero {
+                height: 350px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero {
+                height: 300px;
+            }
+            
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .hero-subtitle {
+                font-size: 14px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-button {
+                border-radius: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Original Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" id="tectics-link">TechTics Club</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="eduv-link">EduVision</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="shop-link">Shop</a>
+            </li>
+        </ul>
+        <a href="#sign-in" class="nav-link sign-in-link">Sign In</a>
+    </nav>
+
+    <!-- Second Navbar -->
+    <div class="second-navbar" id="second-navbar" style="display: flex;">
+        <ul class="nav-menu" id="second-nav-menu">
+            <li class="nav-item"><a href="recent-trends-news.html" class="nav-link">Recent Trends/News</a></li>
+            <li class="nav-item"><a href="about-us.html" class="nav-link">About Us</a></li>
+            <li class="nav-item"><a href="robofest.html" class="nav-link">RoboFest</a></li>
+            <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+            <li class="nav-item"><a href="contact-us.html" class="nav-link active">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Content - Contact Us -->
+    <div class="page-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="contact-hero animate__animated animate__fadeIn">
+                <div class="hero-overlay">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Get in Touch</h1>
+                        <p class="hero-subtitle">Have questions or want to join TechTics Club? We'd love to hear from you. Reach out to us through any of the channels below.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information Cards -->
+            <section class="contact-info">
+                <div class="row">
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="contact-info-card">
+                            <div class="contact-icon float-animation">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3 class="contact-title">Visit Us</h3>
+                            <p class="contact-text">University Road, ICCBS Technology Incubator, Karachi, Pakistan</p>
+                            <a href="https://goo.gl/maps/1234567890" target="_blank" class="contact-link mt-3 d-inline-block">View on Map <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="contact-info-card">
+                            <div class="contact-icon float-animation">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3 class="contact-title">Email Us</h3>
+                            <p class="contact-text">General Inquiries: <a href="mailto:info@techticsclub.com" class="contact-link">info@techticsclub.com</a></p>
+                            <p class="contact-text">Membership: <a href="mailto:join@techticsclub.com" class="contact-link">join@techticsclub.com</a></p>
+                            <p class="contact-text">Partnerships: <a href="mailto:partners@techticsclub.com" class="contact-link">partners@techticsclub.com</a></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="contact-info-card">
+                            <div class="contact-icon float-animation">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <h3 class="contact-title">Call Us</h3>
+                            <p class="contact-text">Main Office: <a href="tel:+923258988646" class="contact-link">+92 325 8988646</a></p>
+                            <p class="contact-text">Support: <a href="tel:+923258988647" class="contact-link">+92 325 8988647</a></p>
+                            <p class="contact-text">Working Hours: Monday-Friday, 9am-5pm</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Form Section -->
+            <section class="contact-form-container" data-aos="fade-up">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <h2 class="section-title text-center">Send Us a Message</h2>
+                            <div class="success-message" id="successMessage">
+                                <i class="fas fa-check-circle me-2"></i> Your message has been sent successfully! We'll get back to you soon.
+                            </div>
+                            <div class="contact-form">
+                                <form id="contactForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name" class="form-label">Your Name*</label>
+                                                <input type="text" class="form-control" id="name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email" class="form-label">Email Address*</label>
+                                                <input type="email" class="form-control" id="email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="subject" class="form-label">Subject*</label>
+                                        <input type="text" class="form-control" id="subject" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="message" class="form-label">Your Message*</label>
+                                        <textarea class="form-control" id="message" rows="5" required></textarea>
+                                    </div>
+                                    
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="checkbox" value="" id="privacyPolicy" required>
+                                        <label class="form-check-label" for="privacyPolicy">
+                                            I agree to the privacy policy and terms of service*
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="text-center">
+                                        <button type="submit" class="submit-button">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Map Section -->
+            <section class="map-section" data-aos="fade-up">
+                <h2 class="section-title">Find Us</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.032536127243!2d67.10980601498026!3d24.888731984038462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f8f5e331ebd%3A0x3125c92feccdef0c!2sICCBS%20Technology%20Incubator!5e0!3m2!1sen!2s!4v1679040241908!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </section>
+
+            <!-- FAQs Section -->
+            <section class="faq-section" data-aos="fade-up">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                How can I join TechTics Club?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                To join TechTics Club, you can fill out the membership application form on our website or visit our office during working hours. We welcome students from all educational backgrounds who are passionate about technology and innovation. Membership is open throughout the year, with special recruitment drives at the beginning of each semester.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                What are the membership benefits?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Members of TechTics Club enjoy numerous benefits, including access to exclusive workshops and training sessions, opportunities to participate in national and international competitions, networking with industry professionals, access to our tech resources and equipment, mentorship from senior members, and the chance to work on innovative projects that can enhance your portfolio.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                How can my organization partner with TechTics Club?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We welcome partnerships with educational institutions, tech companies, and other organizations that share our vision of promoting technology and innovation. You can partner with us as event sponsors, workshop facilitators, competition judges, or mentors for our projects. Please contact our partnerships team at partners@techticsclub.com to discuss potential collaboration opportunities.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                When and where are your regular meetings held?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our general body meetings are held every Friday from 4:00 PM to 6:00 PM at the ICCBS Technology Incubator. Special interest groups and project teams may have additional meeting schedules throughout the week. Meeting announcements are sent via email and posted on our social media channels.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                Do I need prior technical knowledge to join?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                No, you don't need prior technical knowledge to join TechTics Club. We welcome members with all levels of experience, from beginners to advanced. Our club provides learning opportunities and mentorship to help you develop your skills. The most important requirements are enthusiasm, willingness to learn, and a passion for technology.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Connect Section -->
+            <section class="social-connect" data-aos="fade-up">
+                <h2 class="social-title">Connect With Us</h2>
+                <p class="social-subtitle">Follow us on social media to stay updated with our latest events, workshops, and tech news.</p>
+                <div class="social-icons-large">
+                    <a href="#" class="social-icon-large"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon-large"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon-large"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon-large"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon-large"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon-large"><i class="fab fa-github"></i></a>
+                </div>
+            </section>
+
+            <!-- Newsletter Section -->
+            <section class="newsletter-section" data-aos="fade-up">
+                <div class="container">
+                    <h2 class="newsletter-title">Subscribe to Our Newsletter</h2>
+                    <p class="newsletter-subtitle">Get the latest updates on events, workshops, and tech trends delivered straight to your inbox.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your Email Address" required>
+                        <button type="submit" class="newsletter-button">Subscribe</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">TechticsClub</h5>
+                    <p>Empowering the next generation of tech innovators through learning, collaboration, and competition.</p>
+                    <div class="social-icons">
+                        <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="recent-trends-news.html">Recent Trends/News</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="robofest.html">RoboFest</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <ul class="list-unstyled footer-contact">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> University Road, ICCBS Technology Incubator, Karachi</li>
+                        <li><i class="fas fa-phone me-2"></i> +92 325 8988646</li>
+                        <li><i class="fas fa-envelope me-2"></i> <a href="mailto:info@techticsclub.com">info@techticsclub.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2025 TechticsClub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and AOS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // JavaScript to toggle the second navbar and content section visibility
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show the TechTics section by default
+            displaySecondNavbar('tectics');
+            
+            // Set the active class for TechTics link
+            document.getElementById('tectics-link').classList.add('active');
+            
+            // Event listeners for main navbar options
+            document.getElementById('tectics-link').addEventListener('click', function() {
+                displaySecondNavbar('tectics');
+                setActiveMainLink('tectics-link');
+            });
+            
+            document.getElementById('eduv-link').addEventListener('click', function() {
+                displaySecondNavbar('eduv');
+                setActiveMainLink('eduv-link');
+            });
+            
+            document.getElementById('shop-link').addEventListener('click', function() {
+                displaySecondNavbar('shop');
+                setActiveMainLink('shop-link');
+            });
+            
+            // Function to set active main link
+            function setActiveMainLink(linkId) {
+                document.querySelectorAll('.navbar .nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                document.getElementById(linkId).classList.add('active');
+            }
+            
+            // Function to display the second navbar and content
+            function displaySecondNavbar(section) {
+                const secondNavbar = document.getElementById('second-navbar');
+                const secondNavMenu = document.getElementById('second-nav-menu');
+                
+                // Show the second navbar
+                secondNavbar.style.display = 'flex';
+                
+                // Clear current second navbar options
+                secondNavMenu.innerHTML = '';
+                
+                // Show corresponding options for each section
+                if (section === 'tectics') {
+                    secondNavMenu.innerHTML = `
+                        <li class="nav-item"><a href="recent-trends-news.html" class="nav-link">Recent Trends/News</a></li>
+                        <li class="nav-item"><a href="about-us.html" class="nav-link">About Us</a></li>
+                        <li class="nav-item"><a href="robofest.html" class="nav-link">RoboFest</a></li>
+                        <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                        <li class="nav-item"><a href="contact-us.html" class="nav-link active">Contact Us</a></li>
+                    `;
+                } else if (section === 'eduv') {
+                    secondNavMenu.innerHTML = `
+                        <li class="nav-item"><a href="#" class="nav-link">Courses</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Resources</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Student Wiki</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">R&D</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Partners</a></li>
+                    `;
+                } else if (section === 'shop') {
+                    secondNavMenu.innerHTML = `
+                        <li class="nav-item"><a href="#" class="nav-link">Products</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Special Discounts</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Educational Pricing</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Become a Distributor</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Feedbacks</a></li>
+                    `;
+                }
+            }
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simulate form submission
+                    setTimeout(function() {
+                        // Show success message
+                        successMessage.style.display = 'block';
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Hide success message after 5 seconds
+                        setTimeout(function() {
+                            successMessage.style.display = 'none';
+                        }, 5000);
+                    }, 1000);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

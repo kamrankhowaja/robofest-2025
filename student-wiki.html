@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduVision - Student Wiki</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Original Navigation Bar Styles */
+        .navbar {
+            background-color: #0d1b3e;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            height: 80px;
+        }
+
+        /* Navigation Menu on the Left */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 30px 20px;
+            display: block;
+            font-size: 17px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        /* Active link in the first navbar */
+        .nav-link.active {
+            color: #0d6efd;
+            border-bottom: 3px solid #0d6efd;
+        }
+
+        /* Second Navbar (Initially Hidden) */
+        .second-navbar {
+            background-color: #1a2647;
+            padding: 10px 5%;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            justify-content: center;
+            text-align: center;
+            display: flex;
+        }
+
+        /* Center the links in the second navbar */
+        .second-navbar .nav-menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+        }
+
+        .second-navbar .nav-item {
+            margin-right: 20px;
+        }
+
+        .second-navbar .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .second-navbar .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        /* Highlighting the active item in the second navbar */
+        .second-navbar .nav-link.active {
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 4px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-top: 160px;
+            padding: 40px 0;
+            flex: 1;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(13, 27, 62, 0.8), rgba(13, 27, 62, 0.8)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Wiki Card Styles */
+        .wiki-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+            background-color: white;
+        }
+
+        .wiki-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .wiki-icon {
+            font-size: 40px;
+            color: #0d6efd;
+            margin-bottom: 20px;
+        }
+
+        .wiki-content {
+            padding: 30px;
+        }
+
+        .wiki-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #0d1b3e;
+        }
+
+        .wiki-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .wiki-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .wiki-btn {
+            background-color: #0d1b3e;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .wiki-btn:hover {
+            background-color: #0d6efd;
+            transform: translateY(-3px);
+        }
+
+        /* Featured Articles Section */
+        .featured-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+            margin: 50px 0;
+        }
+
+        .article-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+            background-color: white;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .article-card:hover .article-image img {
+            transform: scale(1.1);
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0d1b3e;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .article-btn {
+            background-color: #0d1b3e;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .article-btn:hover {
+            background-color: #0d6efd;
+        }
+
+        /* Contributors Section */
+        .contributors-section {
+            padding: 60px 0;
+        }
+
+        .contributor-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .contributor-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .contributor-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid #0d6efd;
+        }
+
+        .contributor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contributor-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #0d1b3e;
+        }
+
+        .contributor-role {
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+
+        .contributor-stats {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .contributor-stat {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #0d1b3e;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Search Section */
+        .search-section {
+            background-color: #0d1b3e;
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .search-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .search-subtitle {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            height: 60px;
+            border-radius: 30px;
+            padding: 0 30px;
+            font-size: 18px;
+            border: none;
+        }
+
+        .search-btn {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            height: 60px;
+            border-radius: 30px;
+            padding: 0 40px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-3px);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #0d1b3e !important;
+            color: white;
+            padding: 3rem 0;
+            width: 100%;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #0d6efd;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a,
+        .footer-contact a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-contact a:hover {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-contact i {
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+
+        .footer hr {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .list-inline-item:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+
+        .list-inline-item a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .list-inline-item a:hover {
+            color: #0d6efd;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 60px 0;
+        }
+
+        .category-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-icon {
+            font-size: 36px;
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+
+        .category-content {
+            padding: 25px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0d1b3e;
+        }
+
+        .category-description {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .category-count {
+            background-color: #f1f1f1;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0d1b3e;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Original Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="tectics-link">TechTics Club</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link active" id="eduv-link">EduVision</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="shop-link">Shop</a>
+            </li>
+        </ul>
+        <!-- Updated Sign In link to follow the same styling as other navbar links -->
+        <a href="#sign-in" class="nav-link sign-in-link">Sign In</a>
+    </nav>
+
+    <!-- Second Navbar -->
+    <div class="second-navbar" id="second-navbar">
+        <ul class="nav-menu" id="second-nav-menu">
+            <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+            <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+            <li class="nav-item"><a href="student-wiki.html" class="nav-link active">Student Wiki</a></li>
+            <li class="nav-item"><a href="rnd.html" class="nav-link">R&D</a></li>
+            <li class="nav-item"><a href="partners.html" class="nav-link">Partners</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section" data-aos="fade-up">
+            <div class="container">
+                <h1 class="hero-title">Student Wiki</h1>
+                <p class="hero-subtitle">A collaborative knowledge base created by students, for students. Explore, learn, and contribute to our growing repository of technical knowledge.</p>
+                <button class="btn btn-primary btn-lg">Start Exploring</button>
+            </div>
+        </section>
+
+        <!-- Wiki Categories -->
+        <section class="categories-section">
+            <div class="container">
+                <h2 class="text-center mb-5" data-aos="fade-up">Wiki Categories</h2>
+                <div class="row">
+                    <!-- Category 1 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="category-card">
+                            <div class="category-content">
+                                <div class="category-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="category-count">245 Articles</div>
+                                <h3 class="category-title">Programming & Development</h3>
+                                <p class="category-description">Articles covering various programming languages, frameworks, development methodologies, and best practices.</p>
+                                <button class="btn wiki-btn">Explore Category</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="category-card">
+                            <div class="category-content">
+                                <div class="category-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="category-count">187 Articles</div>
+                                <h3 class="category-title">Robotics & Automation</h3>
+                                <p class="category-description">Knowledge base on robotics principles, automation technologies, control systems, and practical applications.</p>
+                                <button class="btn wiki-btn">Explore Category</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="category-card">
+                            <div class="category-content">
+                                <div class="category-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="category-count">156 Articles</div>
+                                <h3 class="category-title">AI & Machine Learning</h3>
+                                <p class="category-description">Articles on artificial intelligence concepts, machine learning algorithms, neural networks, and practical implementations.</p>
+                                <button class="btn wiki-btn">Explore Category</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 4 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="category-card">
+                            <div class="category-content">
+                                <div class="category-icon">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <div class="category-count">132 Articles</div>
+                                <h3 class="category-title">Electronics & Circuits</h3>
+                                <p class="category-description">Knowledge base on electronic components, circuit design, PCB layout, and embedded systems development.</p>
+                                <button class="btn wiki-btn">Explore Category</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 5 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="category-card">
+                            <div class="category-content">
+                                <div class="category-icon">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <div class="category-count">118 Articles</div>
+                                <h3 class="category-title">IoT & Connected Systems</h3>
+                                <p class="category-description">Articles on Internet of Things technologies, connected devices, smart systems, and IoT applications.</p>
+                                <button class="btn wiki-btn">Explore Category</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 6 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="category-card">
+                            <div class="category-content">
+                                <div class="category-icon">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                                <div class="category-count">95 Articles</div>
+                                <h3 class="category-title">3D Modeling & Printing</h3>
+                                <p class="category-description">Knowledge base on 3D modeling techniques, design principles, 3D printing technologies, and applications.</p>
+                                <button class="btn wiki-btn">Explore Category</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Articles -->
+        <section class="featured-section">
+            <div class="container">
+                <h2 class="text-center mb-5" data-aos="fade-up">Featured Articles</h2>
+                <div class="row">
+                    <!-- Article 1 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Python Programming">
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">Mastering Python: A Comprehensive Guide to Data Structures and Algorithms</h3>
+                                <p>An in-depth exploration of Python's data structures and algorithms with practical examples and performance analysis.</p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-user me-2"></i>John Smith</span>
+                                    <span><i class="fas fa-calendar me-2"></i>June 15, 2023</span>
+                                </div>
+                                <button class="btn article-btn w-100 mt-3">Read Article</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 2 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1506&q=80" alt="Robotics">
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">Building Autonomous Robots: From Sensors to Decision Making</h3>
+                                <p>A comprehensive guide to designing and programming autonomous robots with various sensors and decision-making algorithms.</p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-user me-2"></i>Sarah Chen</span>
+                                    <span><i class="fas fa-calendar me-2"></i>May 22, 2023</span>
+                                </div>
+                                <button class="btn article-btn w-100 mt-3">Read Article</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 3 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1677442135136-760c813a743d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="AI">
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">Understanding Neural Networks: A Student's Guide to Deep Learning</h3>
+                                <p>An accessible introduction to neural networks and deep learning concepts with practical implementation examples.</p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-user me-2"></i>Michael Johnson</span>
+                                    <span><i class="fas fa-calendar me-2"></i>July 3, 2023</span>
+                                </div>
+                                <button class="btn article-btn w-100 mt-3">Read Article</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 4 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1601612628452-9e99ced43524?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="PCB Design">
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">PCB Design Best Practices: From Schematic to Fabrication</h3>
+                                <p>A comprehensive guide to PCB design workflow, component placement, routing techniques, and design for manufacturing.</p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-user me-2"></i>David Kim</span>
+                                    <span><i class="fas fa-calendar me-2"></i>April 18, 2023</span>
+                                </div>
+                                <button class="btn article-btn w-100 mt-3">Read Article</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 5 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="IoT">
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">Building IoT Systems: From Sensors to Cloud Integration</h3>
+                                <p>A step-by-step guide to designing and implementing IoT systems, including sensor selection, connectivity, and cloud integration.</p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-user me-2"></i>Emily Rodriguez</span>
+                                    <span><i class="fas fa-calendar me-2"></i>March 5, 2023</span>
+                                </div>
+                                <button class="btn article-btn w-100 mt-3">Read Article</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 6 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="3D Printing">
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">Advanced 3D Printing Techniques for Functional Prototypes</h3>
+                                <p>Explore advanced 3D printing techniques, material selection, and post-processing methods for creating functional prototypes.</p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-user me-2"></i>Robert Lee</span>
+                                    <span><i class="fas fa-calendar me-2"></i>February 12, 2023</span>
+                                </div>
+                                <button class="btn article-btn w-100 mt-3">Read Article</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4" data-aos="fade-up">
+                    <button class="btn btn-outline-primary btn-lg">View All Articles</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Contributors -->
+        <section class="contributors-section">
+            <div class="container">
+                <h2 class="text-center mb-5" data-aos="fade-up">Top Contributors</h2>
+                <div class="row">
+                    <!-- Contributor 1 -->
+                    <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="contributor-card">
+                            <div class="contributor-image">
+                                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="John Smith">
+                            </div>
+                            <h3 class="contributor-name">John Smith</h3>
+                            <p class="contributor-role">Programming Expert</p>
+                            <div class="contributor-stats">
+                                <div class="contributor-stat">
+                                    <div class="stat-value">45</div>
+                                    <div class="stat-label">Articles</div>
+                                </div>
+                                <div class="contributor-stat">
+                                    <div class="stat-value">128</div>
+                                    <div class="stat-label">Edits</div>
+                                </div>
+                                <div class="contributor-stat">
+                                    <div class="stat-value">4.9</div>
+                                    <div class="stat-label">Rating</div>
+                                </div>
+                            </div>
+                            <button class="btn wiki-btn">View Profile</button>
+                        </div>
+                    </div>
+
+                    <!-- Contributor 2 -->
+                    <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="contributor-card">
+                            <div class="contributor-image">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" alt="Sarah Chen">
+                            </div>
+                            <h3 class="contributor-name">Sarah Chen</h3>
+                            <p class="contributor-role">Robotics Specialist</p>
+                            <div class="contributor-stats">
+                                <div class="contributor-stat">
+                                    <div class="stat-value">38</div>
+                                    <div class="stat-label">Articles</div>
+                                </div>
+                                <div class="contributor-stat">
+                                    <div class="stat-value">105</div>
+                                    <div class="stat-label">Edits</div>
+                                </div>
+                                <div class="contributor-stat">
+                                    <div class="stat-value">4.8</div>
+                                    <div class="stat-label">Rating</div>
+                                </div>
+                            </div>
+                            <button class="btn wiki-btn">View Profile</button>
+                        </div>
+                    </div>
+
+                    <!-- Contributor 3 -->
+                    <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="contributor-card">
+                            <div class="contributor-image">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Michael Johnson">
+                            </div>
+                            <h3 class="contributor-name">Michael Johnson</h3>
+                            <p class="contributor-role">AI Researcher</p>
+                            <div class="contributor-stats">
+                                <div class="contributor-stat">
+                                    <div class="stat-value">32</div>
+                                    <div class="stat-label">Articles</div>
+                                </div>
+                                <div class="contributor-stat">
+                                    <div class="stat-value">94</div>
+                                    <div class="stat-label">Edits</div>
+                                </div>
+                                <div class="contributor-stat">
+                                    <div class="stat-value">4.7</div>
+                                    <div class="stat-label">Rating</div>
+                                </div>
+                            </div>
+                            <button class="btn wiki-btn">View Profile</button>
+                        </div>
+                    </div>
+
+                    <!-- Contributor 4 -->
+                    <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="contributor-card">
+                            <div class="contributor-image">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1361&q=80" alt="Emily Rodriguez">
+                            </div>
+                            <h3 class="contributor-name">Emily Rodriguez</h3>
+                            <p class="contributor-role">IoT Expert</p>
+                            <div class="contributor-stats">
+                                <div class="contributor-stat">
+                                    <div class="stat-value">29</div>
+                                    <div class="stat-label">Articles</div>
+                                </div>
+                                <div class="contributor-stat">
+                                    <div class="stat-value">87</div>
+                                    <div class="stat-label">Edits</div>
+                                </div>
+                                <div class="contributor-stat">
+                                    <div class="stat-value">4.6</div>
+                                    <div class="stat-label">Rating</div>
+                                </div>
+                            </div>
+                            <button class="btn wiki-btn">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="container">
+                <h2 class="search-title" data-aos="fade-up">Find Wiki Articles</h2>
+                <p class="search-subtitle" data-aos="fade-up" data-aos-delay="100">Search our extensive collection of student-contributed articles to find the information you need.</p>
+                <div class="search-form" data-aos="fade-up" data-aos-delay="200">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control search-input" placeholder="Search for articles...">
+                        <button class="search-btn" type="button">Search</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contribute Section -->
+        <section class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h2 class="mb-4">Contribute to the Wiki</h2>
+                    <p class="mb-4">Share your knowledge and expertise with the community by contributing to our student wiki. Write new articles, edit existing content, or suggest improvements to help build a comprehensive knowledge base.</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Write new articles on technical topics</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Edit and improve existing content</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Add diagrams, code examples, and illustrations</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Review and verify technical information</li>
+                    </ul>
+                    <button class="btn btn-primary">Start Contributing</button>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Students Collaborating" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">TechticsClub</h5>
+                    <p>Empowering the next generation of tech innovators through learning, collaboration, and competition.</p>
+                    <div class="social-icons">
+                        <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <ul class="list-unstyled footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> University Road, ICCBS Technology Incubator, Karachi</li>
+                        <li><i class="fas fa-phone"></i> +92 325 8988646</li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@techticsclub.com">info@techticsclub.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2025 TechticsClub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Event listeners for clicking the first navbar options
+        document.getElementById('tectics-link').addEventListener('click', function () {
+            window.location.href = 'tectics.html';
+        });
+
+        document.getElementById('eduv-link').addEventListener('click', function () {
+            // Already on EduVision page
+        });
+
+        document.getElementById('shop-link').addEventListener('click', function () {
+            window.location.href = 'shop.html';
+        });
+    </script>
+</body>
+
+</html>
